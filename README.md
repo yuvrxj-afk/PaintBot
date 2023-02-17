@@ -1,1 +1,1 @@
-"#PaintBot" 
+# PaintBot
