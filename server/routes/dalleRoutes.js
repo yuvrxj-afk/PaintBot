@@ -1,7 +1,6 @@
 import { Configuration, OpenAIApi } from "openai";
-
-const express = require("express");
-const dotenv = require("dotenv");
+import express from "express";
+import * as dotenv from "dotenv";
 
 dotenv.config();
 
@@ -13,8 +12,8 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-router.route("/").get((req, res) => {
-  res.send("PaintBot HERE!");
+router.route("/api").get((req, res) => {
+  res.send("E!");
 });
 
 export default router;
