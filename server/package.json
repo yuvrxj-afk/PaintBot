@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon index"
   },
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
