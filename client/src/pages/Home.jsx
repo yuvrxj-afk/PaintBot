@@ -15,6 +15,29 @@ const Home = () => {
   const [allPosts, setAllPosts] = useState(null);
   const [searchText, setsearchText] = useState("");
 
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch("http://localhost:5000/api/v1/post", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (response.ok) {
+          const result = await response.json();
+          setAllPosts(result.data.reverse());
+        }
+      } catch (error) {
+        alert(error)
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPosts();
+  }, []);
+
   return (
     <section className="max-w-7xl mx-auto">
       <div>
@@ -40,17 +63,18 @@ const Home = () => {
           <>
             {searchText && (
               <h2 className="font-medium text-[#666e75] text-xl mb-3 ">
-                Showing results for{" "}
+                Showing results for
                 <span className="text-[#1b1c20]">{searchText}</span>
               </h2>
             )}
             <div
               className="grid lg:grid-cols-4 sm:grid-cols-3 xs:gird-cols-1 
-            grid-cols-1 gap-3 ">
+            grid-cols-1 gap-3 "
+            >
               {searchText ? (
                 <RenderCards data={[]} title="No Search results found" />
               ) : (
-                <RenderCards data={[]} title="No post found" />
+                <RenderCards data={allPosts} title="No post found" />
               )}
             </div>
           </>

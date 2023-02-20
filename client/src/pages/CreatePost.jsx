@@ -15,10 +15,33 @@ const CreatePost = () => {
 
   const [generatingImg, setgeneratingImg] = useState(false);
   const [loading, setloading] = useState(false);
-  
+
   // Onclicks.
-  const handleSubmit = () => {};
-  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (form.prompt && form.photo) {
+      setloading(true);
+      try {
+        const response = await fetch("http://localhost:5000/api/v1/post", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form),
+        });
+        const data = await response.json();
+        navigate("/");
+      } catch (error) {
+        alert(error);
+      } finally {
+        setloading(false);
+      }
+    } else {
+      alert("Please Enter a prompt / Generate an Image.");
+    }
+  };
+
   const handleChange = (e) => {
     setform({ ...form, [e.target.name]: e.target.value });
   };
@@ -27,8 +50,29 @@ const CreatePost = () => {
     const randomPrompt = getRandomPrompt(form.prompt);
     setform({ ...form, prompt: randomPrompt });
   };
-  
-  const generateImage = () => {};
+
+  const generateImage = async () => {
+    if (form.prompt) {
+      try {
+        setgeneratingImg(true);
+        const response = await fetch("http://localhost:5000/api/v1/dalle", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ prompt: form.prompt }),
+        });
+        const data = await response.json();
+        setform({ ...form, photo: `data:image/jpeg;base64,${data.photo}` });
+      } catch (error) {
+        alert(error);
+      } finally {
+        setgeneratingImg(false);
+      }
+    } else {
+      alert("Please Enter a prompt");
+    }
+  };
 
   return (
     <section className="max-w-7xl mx-auto">
@@ -107,7 +151,7 @@ const CreatePost = () => {
           </p>
           <button
             type="button"
-            onClick={generateImage}
+            onClick={handleSubmit}
             className="mt-3 text-white bg-blue-600 font-medium rounded-md text-sm w-full
            sm:w-auto px-5 py-2.5 text-center"
           >
