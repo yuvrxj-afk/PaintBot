@@ -91,11 +91,11 @@ const Home = () => {
               </h2>
             )}
             <div
-              className="grid lg:grid-cols-4 sm:grid-cols-3 xs:gird-cols-1 
+              className="mt-10 grid lg:grid-cols-4 sm:grid-cols-3 xs:gird-cols-1 
             grid-cols-1 gap-3 "
             >
               {searchText ? (
-                <RenderCards data={[]} title="No Search results found" />
+                <RenderCards data={searchedResults} title="No Search results found" />
               ) : (
                 <RenderCards data={allPosts} title="No Post Found" />
               )}

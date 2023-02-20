@@ -14,10 +14,14 @@
 }
 
 .prompt::-webkit-scrollbar {
+    /* display: none; */
     width: 5px;
 }
  
 .prompt::-webkit-scrollbar-thumb {
-  background-color: #666e75;
+  background-color: #088afc;
   border-radius: 5px;
+}
+body::-webkit-scrollbar{
+    display: none;
 }
