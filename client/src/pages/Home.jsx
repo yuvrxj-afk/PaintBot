@@ -22,12 +22,15 @@ const Home = () => {
     const fetchPosts = async () => {
       setLoading(true);
       try {
-        const response = await fetch("http://localhost:8080/api/v1/post", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          "https://paintbot.onrender.com/api/v1/post",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         if (response.ok) {
           const result = await response.json();
           setAllPosts(result.data.reverse());
@@ -87,7 +90,8 @@ const Home = () => {
           <>
             {searchText && (
               <h2 className="font-medium text-[#666e75] text-xl mb-3 ">
-                Showing results for <span className="text-[#1b1c20]">{searchText}</span>
+                Showing results for{" "}
+                <span className="text-[#1b1c20]">{searchText}</span>
               </h2>
             )}
             <div
@@ -95,7 +99,10 @@ const Home = () => {
             grid-cols-1 gap-3 "
             >
               {searchText ? (
-                <RenderCards data={searchedResults} title="No Search results found" />
+                <RenderCards
+                  data={searchedResults}
+                  title="No Search results found"
+                />
               ) : (
                 <RenderCards data={allPosts} title="No Post Found" />
               )}
