@@ -83,7 +83,7 @@ const Home = () => {
 
       <div className="mt-18">
         {loading ? (
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center mt-4">
             <Loader />
           </div>
         ) : (
