@@ -5,6 +5,14 @@
 * {
     font-family: 'Inter', sans-serif;
 }
+.dark{
+    background-color: black;
+    color: #fff;
+}
+.light{
+    background-color: #ffffff;
+    color: #666e75;
+}
 
 @media screen and (min-width: 480px) {
     .card:nth-child(7n + 1) {
