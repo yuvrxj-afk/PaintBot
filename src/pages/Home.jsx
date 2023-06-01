@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Card, Loader, FormField } from "../components";
+import { Card, FormField } from "../components";
 import { ThemeContext,themes } from "../components/ThemeContext";
+import Shimmer from "../components/Shimmer";
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
     return data.map((post) => <Card key={post._id} {...post} />);
@@ -16,6 +17,7 @@ const RenderCards = ({ data, title }) => {
       body.classList.remove("dark");
     }
   },[theme])
+  
   return (
     <h2 className="mt-5 font-bold text-[#4979ff] text-xl uppercase">{title}</h2>
     );
@@ -96,11 +98,7 @@ const RenderCards = ({ data, title }) => {
 
       <div className="mt-18">
         {loading ? (
-          <div className="flex flex-wrap justify-center gap-5 mt-5">
-            <Loader /><Loader /><Loader />
-            <Loader /><Loader /><Loader />
-            <Loader /><Loader /><Loader />
-          </div>
+          <Shimmer/>
         ) : (
           <>
             {searchText && (
