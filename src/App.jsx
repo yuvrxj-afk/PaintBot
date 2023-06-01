@@ -16,6 +16,7 @@ const App = () => {
           <Link to="/">
             <img src={logo} alt="logo" className="w-20 h-15  object-contain" />
           </Link>
+          <div className="flex items-center w-28">
           <span className={`w-20` } onClick={toggleTheme}>
             {(theme===themes.light)?
             <svg
@@ -48,6 +49,7 @@ const App = () => {
           >
             Create
           </Link>
+          </div>
         </header>
         <main className={`sm:p-8 px-4 py-8 w-full  min-h-[calc(100vh-73px)]`}>
           <Routes>
