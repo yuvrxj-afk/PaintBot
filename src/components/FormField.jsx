@@ -1,4 +1,5 @@
-import React from "react";
+import React,{useContext,useEffect} from "react";
+import {themes,ThemeContext} from "../components/ThemeContext"
 
 const FormField = ({
   labelName,
@@ -10,12 +11,23 @@ const FormField = ({
   isSurpriseMe,
   handleSurpriseMe,
 }) => {
+  const {theme,toggleTheme}=useContext(ThemeContext);
+  const body=document.body;
+  useEffect(()=>{
+    if(theme===themes.light){
+      body.classList.add("dark");
+      body.classList.remove("light");
+    }else{
+      body.classList.add("light");
+      body.classList.remove("dark");
+    }
+  },[theme])
   return (
     <div>
       <div className="flex item-center gap-2 mb-2">
         <label
           htmlFor={name}
-          className="block text-sm font-medium text-gray-900"
+          className="block text-sm font-medium "
         >
           {labelName}
         </label>
