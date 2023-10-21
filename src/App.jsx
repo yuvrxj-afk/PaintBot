@@ -3,6 +3,7 @@ import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { logo } from "./assets";
 import { Home, CreatePost } from "./pages";
 import { ThemeContext, themes } from "./components/ThemeContext";
+import Sidebar from "./components/Sidebar";
 
 const App = () => {
   const [theme,setTheme]=useState(themes.light)
@@ -11,7 +12,13 @@ const App = () => {
   };
   return (
       <ThemeContext.Provider value={{theme,toggleTheme}}>
+       
       <BrowserRouter>
+      <div className="flex">
+      <div>
+        <Sidebar/>
+      </div>
+      <div>
         <header className={`w-full flex justify-between items-center sm:px-8 px-4 py-3 border-b-4 border-b-[#5386e4]`}>
           <Link to="/">
             <img src={logo} alt="logo" className="w-20 h-15  object-contain" />
@@ -54,12 +61,19 @@ const App = () => {
           </Link>
           </div>
         </header>
+
         <main className={`sm:p-8 px-4 py-8 w-full  min-h-[calc(100vh-73px)]`}>
+       
+
           <Routes>
             <Route path="/" element={<Home/>} />
             <Route path="/create-post" element={<CreatePost/>} />
           </Routes>
+       
+        
         </main>
+        </div>
+        </div>
       </BrowserRouter>
       </ThemeContext.Provider>
   );
