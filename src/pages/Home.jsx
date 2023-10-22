@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { Card, FormField } from "../components";
 import { ThemeContext,themes } from "../components/ThemeContext";
 import Shimmer from "../components/Shimmer";
+import { logo } from "../assets";
+
 const RenderCards = ({ data, title }) => {
   if (data?.length > 0) {
     return data.map((post) => <Card key={post._id} {...post} />);
@@ -75,7 +77,10 @@ const RenderCards = ({ data, title }) => {
   const {theme,toggleTheme} = useContext(ThemeContext);
   return (
     <section className={`max-w-7xl mx-auto`}>
+      <img src={logo}  alt="" className='w-13 h-20 right-0 left-0 m-auto'/>
       <div>
+      
+
         <h1 className={`font-extrabold font-mono text-[32px]`}>
           The Community Showcase
         </h1>

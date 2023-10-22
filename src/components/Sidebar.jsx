@@ -32,7 +32,7 @@ const Sidebar = ({children}) => {
         
     ]
   return (
-    <div className='container'>
+    <div className='container flex'>
         <div style = {{width: isOpen ? "200px" : "50px"}} className="sidebar">
             <div className="top_section">
                 <img src={logo} style={{display: isOpen ? "block" : "none"}} alt="" className='w-25 h-15  object-contain'/>
